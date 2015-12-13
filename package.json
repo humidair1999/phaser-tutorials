@@ -1,0 +1,19 @@
+{
+  "name": "phaser-tutorials",
+  "version": "1.0.0",
+  "description": "Tutorials for the Phaserjs HTML5 game framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jkymarsh/phaser-tutorials.git"
+  },
+  "author": "J. Ky Marsh <jkymarsh@gmail.com> (http://jkymarsh.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkymarsh/phaser-tutorials/issues"
+  },
+  "homepage": "https://github.com/jkymarsh/phaser-tutorials"
+}
