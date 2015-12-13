@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jkymarsh/phaser-tutorials/issues"
   },
-  "homepage": "https://github.com/jkymarsh/phaser-tutorials"
+  "homepage": "https://github.com/jkymarsh/phaser-tutorials",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
