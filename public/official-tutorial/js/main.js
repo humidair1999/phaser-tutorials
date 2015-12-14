@@ -69,16 +69,25 @@ function create() {
     var star = stars.create(i * 70, 0, 'star');
 
     //  Let gravity do its thing
-    star.body.gravity.y = 6;
+    star.body.gravity.y = 450;
 
     //  This just gives each star a slightly random bounce value
-    star.body.bounce.y = 0.7 + Math.random() * 0.2;
+    star.body.bounce.y = 0.4 + Math.random() * 0.2;
   }
+}
+
+function collectStar (player, star) {
+    // Removes the star from the screen
+    star.kill();
 }
 
 function update() {
   //  Collide the player and the stars with the platforms
   game.physics.arcade.collide(player, platforms);
+
+  game.physics.arcade.collide(stars, platforms);
+
+  game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
   //  Reset the players velocity (movement)
   player.body.velocity.x = 0;
