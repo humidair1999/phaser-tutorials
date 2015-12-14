@@ -4,7 +4,12 @@
   "description": "Tutorials for the Phaserjs HTML5 game framework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve:server": "pm2 start process.json",
+    "serve:client": "browser-sync start --proxy localhost:3000 --files \"**/*.css, **/*.js\"",
+    "serve": "npm run serve:server && npm run serve:client",
+    "logs": "pm2 logs index",
+    "delete": "pm2 delete all"
   },
   "repository": {
     "type": "git",
