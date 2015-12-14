@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve:server": "pm2 start process.json",
-    "serve:client": "browser-sync start --proxy localhost:3000 --files \"**/*.css, **/*.js\"",
+    "serve:client": "browser-sync start --proxy localhost:3000 --files \"**/*.css, **/*.js\" --no-open",
     "serve": "npm run serve:server && npm run serve:client",
     "logs": "pm2 logs index",
     "delete": "pm2 delete all"
