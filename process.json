@@ -4,6 +4,6 @@
     "name"        : "index",
     "script"      : "index.js",
     "watch"       : ["./index.js"],
-    "ignore_watch" : ["public/**/*.css"],
+    "ignore_watch" : ["public/**/*.css", "public/**/*.js"],
   }]
 }
