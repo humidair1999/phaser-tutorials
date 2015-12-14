@@ -58,6 +58,22 @@ function create() {
   player.animations.add('right', [5, 6, 7, 8], 10, true);
 
   cursors = game.input.keyboard.createCursorKeys();
+
+  stars = game.add.group();
+
+  stars.enableBody = true;
+
+  //  Here we'll create 12 of them evenly spaced apart
+  for (var i = 0; i < 12; i++) {
+    //  Create a star inside of the 'stars' group
+    var star = stars.create(i * 70, 0, 'star');
+
+    //  Let gravity do its thing
+    star.body.gravity.y = 6;
+
+    //  This just gives each star a slightly random bounce value
+    star.body.bounce.y = 0.7 + Math.random() * 0.2;
+  }
 }
 
 function update() {
@@ -68,25 +84,23 @@ function update() {
   player.body.velocity.x = 0;
 
   if (cursors.left.isDown) {
-  //  Move to the left
-  player.body.velocity.x = -150;
+    //  Move to the left
+    player.body.velocity.x = -150;
 
-  player.animations.play('left');
-}
-else if (cursors.right.isDown)
-{
-  //  Move to the right
-  player.body.velocity.x = 150;
+    player.animations.play('left');
+  }
+  else if (cursors.right.isDown) {
+    //  Move to the right
+    player.body.velocity.x = 150;
 
-  player.animations.play('right');
-}
-else
-{
-  //  Stand still
-  player.animations.stop();
+    player.animations.play('right');
+  }
+  else {
+    //  Stand still
+    player.animations.stop();
 
-  player.frame = 4;
-}
+    player.frame = 4;
+  }
 
   //  Allow the player to jump if they are touching the ground.
   if (cursors.up.isDown && player.body.touching.down)
