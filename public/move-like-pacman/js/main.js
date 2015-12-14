@@ -167,21 +167,23 @@ PhaserGame.prototype = {
 
     getAngle: function (to) {
 
-        //  About-face?
-        if (this.current === this.opposites[to])
-        {
-            return "180";
-        }
+      var carAngle = this.game.math.radToDeg(this.car.rotation);
+      var targetAngleTable = {};
+      targetAngleTable[Phaser.DOWN] = 180;
+      targetAngleTable[Phaser.UP] = 0;
+      targetAngleTable[Phaser.RIGHT] = 90;
+      targetAngleTable[Phaser.LEFT] = 270;
 
-        if ((this.current === Phaser.UP && to === Phaser.LEFT) ||
-            (this.current === Phaser.DOWN && to === Phaser.RIGHT) ||
-            (this.current === Phaser.LEFT && to === Phaser.DOWN) ||
-            (this.current === Phaser.RIGHT && to === Phaser.UP))
-        {
-            return "-90";
-        }
+      var targetAngle = targetAngleTable[to];
+      var targetAngleNeg = targetAngle - 360;
 
-        return "90";
+      var diffTurnRight = this.game.math.difference(targetAngle, carAngle);
+      var diffTurnLeft = this.game.math.difference(targetAngleNeg, carAngle);
+
+      if(diffTurnRight < diffTurnLeft)
+      return targetAngle;
+      else
+      return targetAngleNeg;
 
     },
 
