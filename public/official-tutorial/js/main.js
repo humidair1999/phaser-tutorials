@@ -85,7 +85,7 @@ function collectStar (player, star) {
   // Removes the star from the screen
   star.kill();
 
-  //  Add and update the score
+  // Add and update the score
   score += 10;
   scoreText.text = 'score: ' + score;
 }
