@@ -5,10 +5,10 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
 });
 
 function preload() {
-  game.load.image('sky', '/assets/official-tutorial/img/sky.png');
-  game.load.image('ground', '/assets/official-tutorial/img/platform.png');
-  game.load.image('star', '/assets/official-tutorial/img/star.png');
-  game.load.spritesheet('dude', '/assets/official-tutorial/img/dude.png', 32, 48);
+  game.load.image('sky', 'img/sky.png');
+  game.load.image('ground', 'img/platform.png');
+  game.load.image('star', 'img/star.png');
+  game.load.spritesheet('dude', 'img/dude.png', 32, 48);
 }
 
 function create() {
@@ -41,7 +41,56 @@ function create() {
   ledge = platforms.create(-150, 250, 'ground');
 
   ledge.body.immovable = true;
+
+  // The player and its settings
+  player = game.add.sprite(32, game.world.height - 150, 'dude');
+
+  //  We need to enable physics on the player
+  game.physics.arcade.enable(player);
+
+  //  Player physics properties. Give the little guy a slight bounce.
+  player.body.bounce.y = 0.2;
+  player.body.gravity.y = 300;
+  player.body.collideWorldBounds = true;
+
+  //  Our two animations, walking left and right.
+  player.animations.add('left', [0, 1, 2, 3], 10, true);
+  player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+  cursors = game.input.keyboard.createCursorKeys();
 }
 
 function update() {
+  //  Collide the player and the stars with the platforms
+  game.physics.arcade.collide(player, platforms);
+
+  //  Reset the players velocity (movement)
+  player.body.velocity.x = 0;
+
+  if (cursors.left.isDown) {
+  //  Move to the left
+  player.body.velocity.x = -150;
+
+  player.animations.play('left');
+}
+else if (cursors.right.isDown)
+{
+  //  Move to the right
+  player.body.velocity.x = 150;
+
+  player.animations.play('right');
+}
+else
+{
+  //  Stand still
+  player.animations.stop();
+
+  player.frame = 4;
+}
+
+  //  Allow the player to jump if they are touching the ground.
+  if (cursors.up.isDown && player.body.touching.down)
+  {
+    player.body.velocity.y = -350;
+  }
 }

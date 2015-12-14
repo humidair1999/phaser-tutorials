@@ -1,0 +1,9 @@
+{
+  "apps" : [{
+    // Application #1
+    "name"        : "index",
+    "script"      : "index.js",
+    "watch"       : ["./index.js"],
+    "ignore_watch" : ["public/**/*.css"],
+  }]
+}
